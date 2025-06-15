@@ -1,31 +1,20 @@
-.Form__form {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin-bottom: 24px;
-    max-width: 300px;
-    text-align: center;
-  }
-  
-  .Form__label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .Form__input[type="text"] {
-    width: 100%;
-    padding: 4px;
-    margin-bottom: 12px;
-    box-sizing: border-box;
-  }
-  .Form__input[type="tel"] {
-    width: 100%;
-    padding: 4px;
-    margin-bottom: 12px;
-    box-sizing: border-box;
-  }
-  
-  .Form__button {
+.Contacts__list {
+  list-style: none;
+  margin: 0;
+  margin-bottom: 35px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 25px;
+  background-color: white;
+}
+
+.Contacts__contact{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.Contacts__button {
     display: block;
     width: 40%;
     height: 40px;
@@ -43,7 +32,7 @@
       rgba(0, 0, 0, 0.1) 7px 7px 20px 0px, rgba(0, 0, 0, 0.1) 4px 4px 5px 0px;
     outline: none;
     position: relative;
-    background: #0099FF;
+    background: #ff5100;
     border: none;
     z-index: 1;
     &:after {
@@ -62,6 +51,6 @@
     }
     &:hover {
       color: #000;
-      background: green;
+      background: rgb(128, 0, 0);
   }
 }

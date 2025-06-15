@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form } from './Form/Form';
 import { nanoid } from 'nanoid';
 import Container from './Container';
+import Contacts from './Contacts';
 
 export class App extends Component {
   state = {
@@ -39,10 +40,21 @@ export class App extends Component {
     }));
   };
 
+  handleRemove = (id) => {
+    console.log("🚀 ~ App ~ id :", id )
+    
+    this.setState(state => ({
+        contacts: state.contacts.filter(contact => contact.id !== id),
+        }));
+  };
+
+
+
   render() {
     return (
       <Container>
         <Form onSubmit={this.handleSubmit} />
+        <Contacts contacts={this.state.contacts} onDelete={this.handleRemove}/>
       </Container>
     );
   }
