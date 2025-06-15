@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { nanoid } from "nanoid";
 import { Form } from './Form/Form';
+import { nanoid } from 'nanoid';
+import Container from './Container';
 
 export class App extends Component {
   state = {
@@ -10,31 +11,39 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: ''
   };
 
-  componentDidMount(){
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const nextContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
+    if (nextContacts !== prevContacts) {
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));
+    }
   }
 
-  nameInputId = nanoid();
-  
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { name } = this.state;
-    this.setState({ name: e.target.value });
-  }
+  handleSubmit = ({ name, number }) => {
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+    this.setState(state => ({
+      contacts: [...state.contacts, contact],
+    }));
+  };
 
   render() {
-    const { contacts, name } = this.state;
     return (
-      <>
-      <Form/>
-      </>
+      <Container>
+        <Form onSubmit={this.handleSubmit} />
+      </Container>
     );
   }
 }

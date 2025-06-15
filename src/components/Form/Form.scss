@@ -1,0 +1,29 @@
+.Form__form {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 24px;
+    max-width: 300px;
+  }
+  
+  .Form__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .Form__input[type="text"] {
+    width: 100%;
+    padding: 4px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+  
+  .Form__button {
+    padding: 6px 12px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    cursor: pointer;
+ &:hover {
+    background-color: #e1e1e1;
+  }
+}
