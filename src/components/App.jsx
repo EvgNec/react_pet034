@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { nanoid } from "nanoid";
+import { Form } from './Form/Form';
 
 export class App extends Component {
   state = {
@@ -13,8 +15,17 @@ export class App extends Component {
 
   componentDidMount(){
   }
+
+  nameInputId = nanoid();
   
   handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { name } = this.state;
     this.setState({ name: e.target.value });
   }
 
@@ -22,23 +33,7 @@ export class App extends Component {
     const { contacts, name } = this.state;
     return (
       <>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            placeholder="Name"
-            onChange={this.handleChange}
-            value={name}
-          />
-        </label>
-
-        <button type="submit">Add</button>
-      </form>
+      <Form/>
       </>
     );
   }
